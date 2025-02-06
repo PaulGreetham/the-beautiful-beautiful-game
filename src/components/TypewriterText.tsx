@@ -7,26 +7,21 @@ interface TypewriterTextProps {
   speed?: number;
 }
 
-export function TypewriterText({ text, speed = 15 }: TypewriterTextProps) {
+export function TypewriterText({ text, speed = 4 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (!text) return;
-    setDisplayedText('');
-    setCurrentIndex(0);
-  }, [text]);
 
-  useEffect(() => {
+    const currentIndex = displayedText.length;
     if (currentIndex < text.length) {
       const timer = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
+        setDisplayedText(text.slice(0, currentIndex + 1));
       }, speed);
 
       return () => clearTimeout(timer);
     }
-  }, [currentIndex, text, speed]);
+  }, [text, displayedText, speed]);
 
   return <div className="whitespace-pre-wrap">{displayedText}</div>;
 } 

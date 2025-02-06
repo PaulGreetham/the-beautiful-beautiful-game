@@ -33,6 +33,7 @@ export async function POST(req: Request) {
       content: completion.choices[0].message.content 
     });
   } catch (error) {
+    console.error('Error generating biography:', error);
     return NextResponse.json(
       { error: 'Failed to generate biography' },
       { status: 500 }

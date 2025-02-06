@@ -26,8 +26,25 @@ export default function Home() {
         body: JSON.stringify({ playerName, author: selectedAuthor }),
       });
       
-      const data = await response.json();
-      setBiography(data.content);
+      if (!response.ok) throw new Error('Failed to generate');
+      
+      const reader = response.body?.getReader();
+      if (!reader) throw new Error('No reader available');
+
+      let accumulatedText = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const text = new TextDecoder().decode(value);
+        try {
+          const data = JSON.parse(text);
+          accumulatedText = data.content;
+          setBiography(accumulatedText);
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      }
     } catch (error) {
       console.error('Failed to generate biography:', error);
     } finally {
