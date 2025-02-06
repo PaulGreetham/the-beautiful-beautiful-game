@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TypewriterText } from '@/components/TypewriterText';
 import { AuthorBadges, type Author } from '@/components/AuthorBadges';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Home() {
   const [playerName, setPlayerName] = useState('');
@@ -56,8 +57,9 @@ export default function Home() {
   return (
     <main className="max-w-2xl mx-auto p-6">
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>The Beautiful Beautiful Game</CardTitle>
+          <ThemeToggle />
         </CardHeader>
         <CardContent>
           <form onSubmit={generateBiography} className="space-y-4">
