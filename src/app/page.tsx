@@ -10,46 +10,47 @@ export default function Home() {
   const [playerName, setPlayerName] = useState('');
   const [biography, setBiography] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [selectedAuthor, setSelectedAuthor] = useState<Author>("Ernest Hemingway");
 
   const generateBiography = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     setBiography('');
-    
-    try {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ playerName, author: selectedAuthor }),
-      });
-      
-      if (!response.ok) throw new Error('Failed to generate');
-      
-      const reader = response.body?.getReader();
-      if (!reader) throw new Error('No reader available');
 
-      let accumulatedText = '';
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        
-        const text = new TextDecoder().decode(value);
-        try {
-          const data = JSON.parse(text);
-          accumulatedText = data.content;
-          setBiography(accumulatedText);
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-        }
-      }
-    } catch (error) {
-      console.error('Failed to generate biography:', error);
-    } finally {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ playerName, author: selectedAuthor }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      setError(error.message || 'Failed to generate biography');
       setLoading(false);
+      return;
     }
+
+    const reader = response.body?.getReader();
+    if (!reader) {
+      setError('Stream not available');
+      setLoading(false);
+      return;
+    }
+
+    let accumulatedText = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const text = new TextDecoder().decode(value);
+      const data = JSON.parse(text);
+      accumulatedText = data.content;
+      setBiography(accumulatedText);
+    }
+    
+    setLoading(false);
   };
 
   return (
@@ -60,6 +61,11 @@ export default function Home() {
         </CardHeader>
         <CardContent>
           <form onSubmit={generateBiography} className="space-y-4">
+            {error && (
+              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+                {error}
+              </div>
+            )}
             <div className="space-y-2">
               <label htmlFor="playerName" className="text-sm font-medium text-muted-foreground">
                 Search Footballer
@@ -89,7 +95,7 @@ export default function Home() {
 
           {biography && (
             <div className="prose prose-lg mt-6">
-              <TypewriterText text={biography} speed={30} />
+              <TypewriterText text={biography} speed={15} />
             </div>
           )}
         </CardContent>
