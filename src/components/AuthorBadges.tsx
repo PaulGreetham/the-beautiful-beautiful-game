@@ -1,6 +1,7 @@
 'use client';
 
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const AUTHORS = [
   "Ernest Hemingway",
@@ -22,7 +23,7 @@ interface AuthorBadgesProps {
 export function AuthorBadges({ selectedAuthor, onAuthorSelect }: AuthorBadgesProps) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-muted-foreground">
+      <label className="text-sm font-medium text-accent">
         Pick Author
       </label>
       <div className="flex flex-wrap gap-3">
@@ -30,7 +31,12 @@ export function AuthorBadges({ selectedAuthor, onAuthorSelect }: AuthorBadgesPro
           <Badge
             key={author}
             variant={selectedAuthor === author ? "default" : "outline"}
-            className="cursor-pointer text-sm py-2 px-4 hover:scale-105 transition-transform"
+            className={cn(
+              "cursor-pointer text-sm py-2 px-4 hover:scale-105 transition-all",
+              selectedAuthor === author 
+                ? "bg-secondary text-primary hover:bg-secondary/90"
+                : "border-secondary/20 hover:border-secondary hover:bg-secondary/10"
+            )}
             onClick={() => onAuthorSelect(author)}
           >
             {author}
