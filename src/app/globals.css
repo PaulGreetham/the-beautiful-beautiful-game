@@ -3,63 +3,63 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-urbanist);
 }
 
 @layer base {
   :root {
-    --background: #222831;
-    --foreground: #EEEEEE;
+    --background: 220 17% 13%;    /* #222831 */
+    --foreground: 0 0% 93%;       /* #EEEEEE */
     
-    --card: #222831;
-    --card-foreground: #EEEEEE;
+    --card: 220 17% 13%;         /* #222831 */
+    --card-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --primary: #00ADB5;
-    --primary-foreground: #EEEEEE;
+    --primary: 184 100% 35%;     /* #00ADB5 */
+    --primary-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --secondary: #FCCD2A;
-    --secondary-foreground: #EEEEEE;
+    --secondary: 45 95% 58%;     /* #FCCD2A */
+    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --accent: #C0EBA6;
-    --accent-foreground: #EEEEEE;
+    --accent: 90 67% 79%;        /* #C0EBA6 */
+    --accent-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --muted: #222831;
-    --muted-foreground: #EEEEEE;
+    --muted: 220 17% 13%;        /* #222831 */
+    --muted-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --destructive: #222831;
-    --destructive-foreground: #EEEEEE;
+    --destructive: 220 17% 13%;  /* #222831 */
+    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --border: #222831;
-    --input: #222831;
-    --ring: #222831;
+    --border: 220 17% 13%;       /* #222831 */
+    --input: 220 17% 13%;        /* #222831 */
+    --ring: 220 17% 13%;         /* #222831 */
     
     --radius: 0.5rem;
   }
   .dark {
-    --background: #222831;
-    --foreground: #EEEEEE;
+    --background: 220 17% 13%;    /* #222831 */
+    --foreground: 0 0% 93%;       /* #EEEEEE */
     
-    --card: #222831;
-    --card-foreground: #EEEEEE;
+    --card: 220 17% 13%;         /* #222831 */
+    --card-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --primary: #00ADB5;
-    --primary-foreground: #EEEEEE;
+    --primary: 184 100% 35%;     /* #00ADB5 */
+    --primary-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --secondary: #00ADB5;
-    --secondary-foreground: #EEEEEE;
+    --secondary: 184 100% 35%;   /* #00ADB5 */
+    --secondary-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --accent: #00ADB5;
-    --accent-foreground: #EEEEEE;
+    --accent: 184 100% 35%;      /* #00ADB5 */
+    --accent-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --muted: #222831;
-    --muted-foreground: #EEEEEE;
+    --muted: 220 17% 13%;        /* #222831 */
+    --muted-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --destructive: #222831;
-    --destructive-foreground: #EEEEEE;
+    --destructive: 220 17% 13%;  /* #222831 */
+    --destructive-foreground: 0 0% 93%; /* #EEEEEE */
     
-    --border: #222831;
-    --input: #222831;
-    --ring: #222831;
+    --border: 220 17% 13%;       /* #222831 */
+    --input: 220 17% 13%;        /* #222831 */
+    --ring: 220 17% 13%;         /* #222831 */
   }
 }
 
