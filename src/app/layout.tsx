@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "The Beautiful Beautiful Game",
-  description: "An app that generates football biographies in the style of Ernest Hemingway",
+  description: "A Next.js application that generates football player biographies in the style of famous authors using AI",
 };
 
 export default function RootLayout({
