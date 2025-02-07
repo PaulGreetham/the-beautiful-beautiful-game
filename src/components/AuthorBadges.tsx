@@ -34,7 +34,7 @@ export function AuthorBadges({ selectedAuthor, onAuthorSelect }: AuthorBadgesPro
             className={cn(
               "cursor-pointer text-sm py-2 px-4 hover:scale-105 transition-all",
               selectedAuthor === author 
-                ? "bg-secondary text-primary hover:bg-secondary/90"
+                ? "bg-secondary text-secondary-foreground hover:bg-secondary/90"
                 : "border-secondary/20 hover:border-secondary hover:bg-secondary/10"
             )}
             onClick={() => onAuthorSelect(author)}
