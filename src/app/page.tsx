@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TypewriterText } from '@/components/TypewriterText';
 import { AuthorBadges, type Author } from '@/components/AuthorBadges';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { FlickeringGridBackground } from "@/components/FlickeringGridBackground";
 import { LoadingProgress } from "@/components/LoadingProgress";
