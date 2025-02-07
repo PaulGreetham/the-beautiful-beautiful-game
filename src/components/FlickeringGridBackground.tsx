@@ -9,8 +9,8 @@ export function FlickeringGridBackground() {
         className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
         squareSize={4}
         gridGap={6}
-        color="hsl(184 100% 35%)"
-        maxOpacity={0.15}
+        color="hsl(112 50% 32%)"
+        maxOpacity={0.5}
         flickerChance={0.1}
       />
     </div>

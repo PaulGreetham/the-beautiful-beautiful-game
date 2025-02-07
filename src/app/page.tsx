@@ -62,9 +62,10 @@ export default function Home() {
       <div className="relative min-h-screen w-full bg-background/50">
         <main className="max-w-2xl mx-auto p-6">
           <Card className="border-secondary/20 backdrop-blur-sm">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-secondary/20">
-              <CardTitle className="text-accent font-bold">The Beautiful Beautiful Game</CardTitle>
-              <ThemeToggle />
+            <CardHeader className="flex flex-col items-center justify-center border-b border-secondary/20">
+              <CardTitle className="text-accent font-bold text-2xl">
+                The Beautiful Beautiful Game
+              </CardTitle>
             </CardHeader>
             <CardContent className="mt-6">
               <form onSubmit={generateBiography} className="space-y-6">
