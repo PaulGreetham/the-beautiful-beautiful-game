@@ -1,10 +1,20 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AnimatedCircularProgressBar } from "@/components/magicui/animated-circular-progress-bar";
 
-export function LoadingProgress() {
+interface LoadingProgressProps {
+  onComplete?: () => void;
+}
+
+export function LoadingProgress({ onComplete }: LoadingProgressProps) {
   const [value, setValue] = useState(0);
+
+  const handleComplete = useCallback(() => {
+    setTimeout(() => {
+      onComplete?.();
+    }, 0);
+  }, [onComplete]);
 
   useEffect(() => {
     const duration = 12000;
@@ -16,6 +26,7 @@ export function LoadingProgress() {
       setValue((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
+          handleComplete();
           return 100;
         }
         return Math.min(prev + increment, 100);
@@ -23,7 +34,7 @@ export function LoadingProgress() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [handleComplete]);
 
   return (
     <AnimatedCircularProgressBar

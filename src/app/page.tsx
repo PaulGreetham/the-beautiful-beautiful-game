@@ -12,6 +12,7 @@ export default function Home() {
   const [playerName, setPlayerName] = useState('');
   const [biography, setBiography] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showBiography, setShowBiography] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedAuthor, setSelectedAuthor] = useState<Author>("Ernest Hemingway");
 
@@ -20,6 +21,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     setBiography('');
+    setShowBiography(false);
 
     const response = await fetch('/api/generate', {
       method: 'POST',
@@ -108,12 +110,14 @@ export default function Home() {
 
                 {loading && (
                   <div className="flex justify-center items-center mt-6">
-                    <LoadingProgress />
+                    <LoadingProgress 
+                      onComplete={() => setShowBiography(true)} 
+                    />
                   </div>
                 )}
               </form>
 
-              {biography && (
+              {showBiography && biography && (
                 <div className="prose prose-lg mt-6 text-foreground">
                   <TypewriterText text={biography} speed={15} />
                 </div>
