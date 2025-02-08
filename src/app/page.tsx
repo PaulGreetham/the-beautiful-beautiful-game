@@ -62,11 +62,17 @@ export default function Home() {
         <main className="max-w-2xl mx-auto p-6">
           <Card className="border-secondary/20 backdrop-blur-sm">
             <CardHeader className="flex flex-col items-center justify-center border-b border-secondary/20">
-              <CardTitle className="text-accent font-bold text-2xl">
+              <CardTitle className="text-accent font-bold text-2xl whitespace-nowrap">
                 The Beautiful Beautiful Game
               </CardTitle>
             </CardHeader>
             <CardContent className="mt-6">
+              <div className="mb-8 text-center text-muted-foreground">
+                <p>
+                  Enter the name of a footballer and select an author to generate a unique literary biography. 
+                  Watch as AI crafts their story through the lens of legendary writers.
+                </p>
+              </div>
               <form onSubmit={generateBiography} className="space-y-6">
                 {error && (
                   <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
